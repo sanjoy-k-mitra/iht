@@ -13,7 +13,21 @@ class BootStrap {
     def init = { servletContext ->
         environments{
             production{
+                if(User.count() == 0){
+                    Role userRole, adminRole, superAdminRole;
+                    if(Role.count()==0){
+                        userRole = new Role(authority: 'ROLE_USER').save(flush: true)
+                        adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
+                        superAdminRole = new Role(authority: 'ROLE_SUPERADMIN').save(flush: true)
+                    }
+//                    User user = new User(username: 'user', password: 'user', enabled: true).save(flush: true)
+//                    User admin = new User(username: 'admin', password: 'admin', enabled: true).save(flush: true)
+                    User superAdmin = new User(username: 'swapan', password: 'swapan2015', enabled: true).save(flush: true)
 
+//                    UserRole.create(user, userRole, true)
+//                    UserRole.create(admin, adminRole, true)
+                    UserRole.create(superAdmin, superAdminRole, true)
+                }
             }
             development{
                 if(User.count() == 0){
