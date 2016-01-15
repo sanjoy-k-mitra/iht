@@ -1,0 +1,31 @@
+buildscript {
+
+}
+
+allprojects {
+	apply plugin: "java"
+	apply plugin: "eclipse"
+	apply plugin: "idea"
+
+    version = '1.0'
+	group = "com.pixisolutions.iht"
+
+}
+
+project(":webapp"){
+
+}
+
+task war(){
+	dependsOn ":webapp:clean"
+	dependsOn ":webapp:war"
+}
+
+
+task stage() {
+	dependsOn clean, war
+}
+
+
+
+
