@@ -1,10 +1,12 @@
 package com.pixisolutions.iht
 
 class Balance {
-
-    Account account;
-    Payment payment;
     Double amount;
+
+    static belongsTo = [
+            account: Account,
+            payment: Payment
+    ]
     static constraints = {
         payment nullable: true
     }

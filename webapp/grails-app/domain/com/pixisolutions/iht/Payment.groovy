@@ -11,13 +11,17 @@ class Payment {
 
     User createdBy
 
+    transient springSecurityService
+
     static hasMany = [
             balances: Balance
     ]
 
     static constraints = {
+        id()
+        note maxSize: 255
         balances display: false
-        createdBy nullable: true
+        createdBy nullable: true, editable: false, display: false
     }
 
     static mapping = {
@@ -25,12 +29,12 @@ class Payment {
         balances cascade: "all"
     }
 
-
+    static transients = ['springSecurityService']
 
     def beforeInsert(){
         try{
-            if(SpringSecurityService.currentUserId){
-                createdBy = User.proxy(SpringSecurityService.currentUserId)
+            if(springSecurityService.currentUserId){
+                createdBy = User.proxy(springSecurityService.currentUserId)
             }
         }catch (MissingPropertyException err){}
         balances = new ArrayList<Balance>()

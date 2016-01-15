@@ -1,0 +1,13 @@
+#list-account table>thead>tr>th:nth-child(4){
+    display: none;
+}
+#list-account table>tbody>tr>td:nth-child(4){
+    display: none;
+}
+
+#list-payment table>thead>tr>th:nth-child(2){
+    display: none;
+}
+#list-payment table>tbody>tr>td:nth-child(2){
+    display: none;
+}

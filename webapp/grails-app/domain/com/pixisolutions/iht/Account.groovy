@@ -13,23 +13,30 @@ class Account {
 
     User createdBy
 
+    transient springSecurityService
+
     static hasMany = [balances: Balance]
 
     static constraints = {
+        id()
+        name maxSize: 255
+        isPayable()
         payableAmount min: 0d, max: 10000000d, nullable: true
         balances display: false
-        createdBy nullable: true
+        createdBy nullable: true, editable: false, display: false
     }
 
     static mapping = {
         table 'iht_account'
     }
 
+    static transients = ['springSecurityService']
+
     def beforeInsert() {
         try{
-            if (SpringSecurityService.currentUserId) {
-                createdBy = User.proxy(SpringSecurityService.currentUserId)
+            if (springSecurityService.getCurrentUserId()) {
+                createdBy = User.proxy(springSecurityService.getCurrentUserId())
             }
-        }catch (MissingPropertyException err){}
+        }catch (Exception err){}
     }
 }
