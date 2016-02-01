@@ -14,4 +14,8 @@ class Balance {
     static mapping = {
         table 'iht_balance'
     }
+
+    String toString(){
+        return "[${account.name}, ${amount}]";
+    }
 }

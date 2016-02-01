@@ -19,18 +19,26 @@
                 <a href="/">IHT-Barisal</a>
             </div>
         </div>
-        <ul class="nav navbar-nav">
-            <li class="${controllerName == 'account' ? 'active' : ''}"><g:link
+        <sec:ifLoggedIn>
+            <ul class="nav navbar-nav">
+                <li class="${controllerName == 'account' ? 'active' : ''}"><g:link
                     controller="account">Accounts</g:link></li>
-            <li class="${controllerName == 'payment' ? 'active' : ''}"><g:link
-                    controller="payment">Payments</g:link></li>
-            <sec:ifAllGranted roles="ROLE_SUPERADMIN">
-                <li><g:link controller="user">Users</g:link>></li>
-            </sec:ifAllGranted>
-        </ul>
-        <ul class="nav nabar-nav navbar-right">
-            <li><a>Logout</a></li>
-        </ul>
+                <li class="${controllerName == 'payment' ? 'active' : ''}"><g:link
+                        controller="payment">Payments</g:link></li>
+                <sec:ifAnyGranted roles="ROLE_ADMIN, ROLE_SUPERADMIN">
+                    <li class="${controllerName == 'expense' ? 'active' : ''}"><g:link
+                            controller="expense">Expenses</g:link></li>
+                </sec:ifAnyGranted>
+
+                <sec:ifAllGranted roles="ROLE_SUPERADMIN">
+                    <li><g:link controller="user">Users</g:link>></li>
+                    <li><g:link controller="userRole">User Roles</g:link>></li>
+                </sec:ifAllGranted>
+            </ul>
+            <form class="form-horizontal navbar-right" method="post" action="/logout">
+                <button type="submit" class="btn btn-default navbar-btn">Logout</button>
+            </form>
+        </sec:ifLoggedIn>
     </div>
 </header>
 

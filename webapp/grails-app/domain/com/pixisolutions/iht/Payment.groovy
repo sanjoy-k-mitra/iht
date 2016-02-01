@@ -4,6 +4,8 @@ import grails.plugin.springsecurity.SpringSecurityService
 
 class Payment {
     Long id
+    String faculty
+    String registrationNo
     String note;
 
     Date dateCreated
@@ -19,7 +21,9 @@ class Payment {
 
     static constraints = {
         id()
-        note maxSize: 255
+        faculty blank: false
+        registrationNo blank: false
+        note maxSize: 255, nullable: true
         balances display: false
         createdBy nullable: true, editable: false, display: false
     }

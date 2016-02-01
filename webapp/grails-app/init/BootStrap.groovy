@@ -54,10 +54,10 @@ class BootStrap {
                     new Account(name: 'Donation', isPayable: false, payableAmount: null).save(flush: true)
                 }
                 if(Payment.count() == 0){
-                    new Payment(note: "09201901").save(flush: true)
-                    new Payment(note: "09201902").save(flush: true)
-                    new Payment(note: "09201903").save(flush: true)
-                    new Payment(note: "09201904").save(flush: true)
+                    new Payment(faculty: "A", registrationNo: "09201901", note: "09201901").save(flush: true)
+                    new Payment(faculty: "A", registrationNo: "09201902", note: "09201902").save(flush: true)
+                    new Payment(faculty: "b", registrationNo: "09201903", note: "09201903").save(flush: true)
+                    new Payment(faculty: "b", registrationNo: "09201904", note: "09201904").save(flush: true)
                 }
             }
             test{

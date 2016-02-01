@@ -39,4 +39,8 @@ class Account {
             }
         }catch (Exception err){}
     }
+
+    String toString(){
+        return name ?: super.toString();
+    }
 }
